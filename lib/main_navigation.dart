@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:thread/widget/home_screen/home_screen.dart';
 import 'package:thread/widget/nav_tab.dart';
 
 class MainNavigation extends StatefulWidget {
@@ -19,7 +20,7 @@ class _MainNavigationState extends State<MainNavigation> {
   }
 
   final screens = [
-    const Center(child: Text('Home')),
+    HomeScreen(),
     const Center(child: Text('Search')),
     const Center(child: Text('Create')),
     const Center(child: Text('Notifications')),
