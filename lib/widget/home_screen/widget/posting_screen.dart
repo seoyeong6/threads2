@@ -12,18 +12,18 @@ class PostingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final profileUrl =
-        "https://picsum.photos/100/100?random=${random.integer(1000)}";
+        "https://picsum.photos/100/100?random=${random.integer(100)}";
     final rightUrl =
-        "https://picsum.photos/100/100?random=${random.integer(1000)}";
+        "https://picsum.photos/100/100?random=${random.integer(100)}";
     final leftUrl =
-        "https://picsum.photos/100/100?random=${random.integer(1000)}";
+        "https://picsum.photos/100/100?random=${random.integer(100)}";
     final centerUrl =
-        "https://picsum.photos/100/100?random=${random.integer(1000)}";
+        "https://picsum.photos/100/100?random=${random.integer(100)}";
 
     final imageUrl1 =
-        "https://picsum.photos/1000/1000?random=${random.integer(1000)}";
+        "https://picsum.photos/400/400?random=${random.integer(100)}";
     final imageUrl2 =
-        "https://picsum.photos/1000/1000?random=${random.integer(1000)}";
+        "https://picsum.photos/400/400?random=${random.integer(100)}";
 
     void onEllipsisTap(BuildContext context) {
       showModalBottomSheet(
@@ -97,32 +97,30 @@ class PostingScreen extends StatelessWidget {
                 SizedBox(height: 5),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
-                  child: Expanded(
-                    child: Row(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: NetworkImage(imageUrl1),
-                              fit: BoxFit.cover,
-                            ),
+                  child: Row(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: NetworkImage(imageUrl1),
+                            fit: BoxFit.cover,
                           ),
-                          width: 350,
-                          height: 200,
                         ),
-                        SizedBox(width: 10),
-                        Container(
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: NetworkImage(imageUrl2),
-                              fit: BoxFit.cover,
-                            ),
+                        width: 350,
+                        height: 200,
+                      ),
+                      SizedBox(width: 10),
+                      Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: NetworkImage(imageUrl2),
+                            fit: BoxFit.cover,
                           ),
-                          width: 350,
-                          height: 200,
                         ),
-                      ],
-                    ),
+                        width: 350,
+                        height: 200,
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(height: 20),
