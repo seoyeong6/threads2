@@ -49,7 +49,7 @@ class _MainNavigationState extends State<MainNavigation> {
     setState(() => _selectedIndex = index);
   }
 
-  final screens = const [
+  final screens = [
     HomeScreen(),
     Center(child: Text('Search')),
     ActivityScreen(),
