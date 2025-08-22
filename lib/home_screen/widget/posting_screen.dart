@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:faker/faker.dart';
-import 'package:thread/widget/home_screen/widget/profile_stack_box.dart';
-import 'package:thread/widget/home_screen/widget/ellipsis_menu.dart';
+import 'package:thread/home_screen/widget/profile_stack_box.dart';
+import 'package:thread/home_screen/widget/ellipsis_menu.dart';
 
 class PostingScreen extends StatelessWidget {
   PostingScreen({super.key});

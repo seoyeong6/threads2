@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:thread/widget/home_screen/home_screen.dart';
-import 'package:thread/nav_tab.dart';
+import 'package:thread/home_screen/home_screen.dart';
+import 'package:thread/widget/nav_tab.dart';
 import 'package:faker/faker.dart';
-
-import 'widget/write_screen/write_sheet.dart'; // ✅ 분리한 모달 위젯
+import 'write_screen/write_sheet.dart';
+import 'activity_screen/activity_screen.dart';
 
 class MainNavigation extends StatefulWidget {
   const MainNavigation({super.key});
@@ -52,7 +52,7 @@ class _MainNavigationState extends State<MainNavigation> {
   final screens = const [
     HomeScreen(),
     Center(child: Text('Search')),
-    Center(child: Text('Notifications')),
+    ActivityScreen(),
     Center(child: Text('Profile')),
   ];
 

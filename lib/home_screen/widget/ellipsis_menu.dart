@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:thread/widget/home_screen/widget/menu_list_tile.dart';
+import 'package:thread/home_screen/widget/menu_list_tile.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class EllipsisMenu extends StatefulWidget {
