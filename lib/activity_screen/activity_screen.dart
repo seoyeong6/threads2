@@ -9,7 +9,7 @@ class ActivityScreen extends StatelessWidget {
     'Replies',
     'Mentions',
     'Verified',
-    'Follow',
+    'Follows',
   ];
 
   @override
@@ -48,7 +48,7 @@ class ActivityScreen extends StatelessWidget {
               children: [
                 ActivityWidget(
                   optionText: 'Mentioned',
-                  timeText: '4h',
+                  timeText: '1h',
                   name: 'John Doe',
                 ),
                 ActivityWidget(
@@ -58,7 +58,7 @@ class ActivityScreen extends StatelessWidget {
                 ),
                 ActivityWidget(
                   optionText: 'Followed',
-                  timeText: '1h',
+                  timeText: '4h',
                   name: 'Mike Johnson',
                 ),
               ],
@@ -68,12 +68,12 @@ class ActivityScreen extends StatelessWidget {
               children: [
                 ActivityWidget(
                   optionText: 'Replied',
-                  timeText: '4h',
+                  timeText: '2h',
                   name: 'John Doe',
                 ),
                 ActivityWidget(
                   optionText: 'Replied',
-                  timeText: '2h',
+                  timeText: '4h',
                   name: 'Jane Smith',
                 ),
               ],
@@ -83,12 +83,12 @@ class ActivityScreen extends StatelessWidget {
               children: [
                 ActivityWidget(
                   optionText: 'Mentioned',
-                  timeText: '4h',
+                  timeText: '3h',
                   name: 'John Doe',
                 ),
                 ActivityWidget(
                   optionText: 'Mentioned',
-                  timeText: '3h',
+                  timeText: '4h',
                   name: 'Bob Wilson',
                 ),
               ],
@@ -98,12 +98,12 @@ class ActivityScreen extends StatelessWidget {
               children: [
                 ActivityWidget(
                   optionText: 'Verified',
-                  timeText: '4h',
+                  timeText: '1h',
                   name: 'John Doe',
                 ),
                 ActivityWidget(
                   optionText: 'Verified',
-                  timeText: '1h',
+                  timeText: '4h',
                   name: 'Alice Brown',
                 ),
               ],
@@ -113,12 +113,12 @@ class ActivityScreen extends StatelessWidget {
               children: [
                 ActivityWidget(
                   optionText: 'Followed',
-                  timeText: '4h',
+                  timeText: '2h',
                   name: 'John Doe',
                 ),
                 ActivityWidget(
                   optionText: 'Followed',
-                  timeText: '2h',
+                  timeText: '4h',
                   name: 'Sarah Davis',
                 ),
               ],
