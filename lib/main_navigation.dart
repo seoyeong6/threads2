@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:thread/home_screen/home_screen.dart';
+import 'package:go_router/go_router.dart';
 import 'package:thread/widget/nav_tab.dart';
 import 'package:faker/faker.dart';
 import 'write_screen/write_sheet.dart';
-import 'activity_screen/activity_screen.dart';
+import 'package:thread/utils.dart';
 
 class MainNavigation extends StatefulWidget {
-  const MainNavigation({super.key});
+  final Widget child;
+  
+  const MainNavigation({required this.child, super.key});
 
   @override
   State<MainNavigation> createState() => _MainNavigationState();
@@ -46,40 +48,67 @@ class _MainNavigationState extends State<MainNavigation> {
       _openWriteSheet(); // 가운데 탭은 화면 전환 대신 모달만
       return; // _selectedIndex 변경 안 함
     }
+    
+    // GoRouter를 사용해서 경로 변경
+    switch (index) {
+      case 0:
+        context.go('/');
+        break;
+      case 1:
+        context.go('/search');
+        break;
+      case 3:
+        context.go('/activity');
+        break;
+      case 4:
+        context.go('/profile');
+        break;
+    }
     setState(() => _selectedIndex = index);
   }
 
-  final screens = [
-    HomeScreen(),
-    Center(child: Text('Search')),
-    ActivityScreen(),
-    Center(child: Text('Profile')),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    // 현재 경로에 따라 선택된 인덱스 결정
+    final location = GoRouterState.of(context).matchedLocation;
+    int currentIndex = 0;
+    if (location.startsWith('/settings')) {
+      currentIndex = 4; // settings는 profile 탭과 같은 위치
+    } else {
+      switch (location) {
+        case '/':
+          currentIndex = 0;
+          break;
+        case '/search':
+          currentIndex = 1;
+          break;
+        case '/activity':
+          currentIndex = 3;
+          break;
+        case '/profile':
+          currentIndex = 4;
+          break;
+        default:
+          currentIndex = _selectedIndex;
+      }
+    }
+
     return Scaffold(
       resizeToAvoidBottomInset: false, // 키보드 올라와도 배경 화면 고정
-      body: Stack(
-        children: [
-          Offstage(offstage: _selectedIndex != 0, child: screens[0]),
-          Offstage(offstage: _selectedIndex != 1, child: screens[1]),
-          Offstage(offstage: _selectedIndex != 3, child: screens[2]),
-          Offstage(offstage: _selectedIndex != 4, child: screens[3]),
-        ],
-      ),
+      body: widget.child, // GoRouter에서 전달받은 child 표시
+      
       bottomNavigationBar: BottomAppBar(
-        color: Colors.white,
+        color: isDarkMode(context) ? Colors.black : Colors.white, // 색상 추가
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             NavTab(
-              isSelected: _selectedIndex == 0,
+              isSelected: currentIndex == 0,
               icon: FontAwesomeIcons.house,
               onTap: () => onTap(0),
             ),
             NavTab(
-              isSelected: _selectedIndex == 1,
+              isSelected: currentIndex == 1,
               icon: FontAwesomeIcons.magnifyingGlass,
               onTap: () => onTap(1),
             ),
@@ -90,12 +119,12 @@ class _MainNavigationState extends State<MainNavigation> {
               onTap: () => onTap(2),
             ),
             NavTab(
-              isSelected: _selectedIndex == 3,
+              isSelected: currentIndex == 3,
               icon: FontAwesomeIcons.heart,
               onTap: () => onTap(3),
             ),
             NavTab(
-              isSelected: _selectedIndex == 4,
+              isSelected: currentIndex == 4,
               icon: FontAwesomeIcons.user,
               onTap: () => onTap(4),
             ),

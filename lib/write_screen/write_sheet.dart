@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:thread/write_screen/video/video_recording_screen.dart';
 
 class WriteSheet extends StatefulWidget {
   final String displayName;
@@ -87,13 +88,22 @@ class _WriteSheetState extends State<WriteSheet> {
                               ),
                               border: InputBorder.none,
                             ),
-                            // ❌ 부모 setState 호출 없음
                           ),
                           const SizedBox(height: 16),
-                          const FaIcon(
-                            FontAwesomeIcons.paperclip,
-                            size: 20,
-                            color: Colors.grey,
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => VideoRecordingScreen(),
+                                ),
+                              );
+                            },
+                            child: const FaIcon(
+                              FontAwesomeIcons.paperclip,
+                              size: 20,
+                              color: Colors.grey,
+                            ),
                           ),
                         ],
                       ),

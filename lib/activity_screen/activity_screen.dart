@@ -34,8 +34,12 @@ class ActivityScreen extends StatelessWidget {
               fontWeight: FontWeight.w600,
               fontSize: 16,
             ),
-            indicatorColor: Colors.black,
-            labelColor: Colors.black,
+            indicatorColor: Theme.of(context).brightness == Brightness.dark
+                ? Colors.white
+                : Colors.black,
+            labelColor: Theme.of(context).brightness == Brightness.dark
+                ? Colors.white
+                : Colors.black,
             unselectedLabelColor: Colors.grey.shade500,
             tabAlignment: TabAlignment.start,
             tabs: [for (var tab in tabs) Tab(text: tab)],

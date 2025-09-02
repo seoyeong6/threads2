@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'main_navigation.dart';
+import 'router.dart';
 
 void main() {
   runApp(const MyApp());
@@ -8,15 +8,23 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: router,
+      themeMode: ThemeMode.system,
       theme: ThemeData(
-        appBarTheme: AppBarTheme(backgroundColor: Colors.white),
+        brightness: Brightness.light,
+        appBarTheme: const AppBarTheme(backgroundColor: Colors.white),
         scaffoldBackgroundColor: Colors.white,
+        bottomAppBarTheme: const BottomAppBarTheme(color: Colors.white),
       ),
-      home: MainNavigation(),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        appBarTheme: const AppBarTheme(backgroundColor: Colors.black),
+        scaffoldBackgroundColor: Colors.black,
+        bottomAppBarTheme: const BottomAppBarTheme(color: Colors.black),
+      ),
     );
   }
 }

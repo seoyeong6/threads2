@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:thread/utils.dart';
 
 class NavTab extends StatelessWidget {
   const NavTab({
@@ -18,13 +19,19 @@ class NavTab extends StatelessWidget {
       child: GestureDetector(
         onTap: () => onTap(),
         child: Container(
-          color: Colors.white,
+          color: isDarkMode(context) ? Colors.black : Colors.white,
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 200),
             child: Icon(
               icon,
               size: 24,
-              color: isSelected ? Colors.black : Colors.grey[400],
+              color: isDarkMode(context)
+                  ? isSelected
+                        ? Colors.white
+                        : Colors.grey[400]
+                  : isSelected
+                  ? Colors.black
+                  : Colors.grey[400],
             ),
           ),
         ),
