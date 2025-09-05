@@ -5,8 +5,8 @@ import 'package:thread/home_screen/home_screen.dart';
 import 'package:thread/search/search_screen.dart';
 import 'package:thread/activity_screen/activity_screen.dart';
 import 'package:thread/profile_screen/profile_screen.dart';
-import 'package:thread/setting_screen/setting_screen.dart';
-import 'package:thread/setting_screen/privacy_screen.dart';
+import 'package:thread/setting_screen/views/setting_screen.dart';
+import 'package:thread/setting_screen/views/privacy_screen.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorKey = GlobalKey<NavigatorState>();
@@ -21,22 +21,13 @@ final router = GoRouter(
         return MainNavigation(child: child);
       },
       routes: [
-        GoRoute(
-          path: '/',
-          builder: (context, state) => HomeScreen(),
-        ),
-        GoRoute(
-          path: '/search',
-          builder: (context, state) => SearchScreen(),
-        ),
+        GoRoute(path: '/', builder: (context, state) => HomeScreen()),
+        GoRoute(path: '/search', builder: (context, state) => SearchScreen()),
         GoRoute(
           path: '/activity',
           builder: (context, state) => ActivityScreen(),
         ),
-        GoRoute(
-          path: '/profile',
-          builder: (context, state) => ProfileScreen(),
-        ),
+        GoRoute(path: '/profile', builder: (context, state) => ProfileScreen()),
         GoRoute(
           path: '/settings',
           builder: (context, state) => SettingScreen(),

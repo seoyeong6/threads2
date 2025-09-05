@@ -1,21 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import 'package:thread/setting_screen/view_models/darkmode_config_viewmodel.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SettingScreen extends StatelessWidget {
+class SettingScreen extends ConsumerWidget {
   const SettingScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
           'Setting',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
+          style: TextStyle(
+            color: Theme.of(context).brightness == Brightness.dark
+                ? Colors.white
+                : Colors.black,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
       body: ListView(
         children: [
+          SwitchListTile.adaptive(
+            title: Text("Dark Mode"),
+            value: ref.watch(darkModeConfigViewModelProvider).isDarkMode,
+            onChanged: (value) {
+              ref.read(darkModeConfigViewModelProvider.notifier).setDarkMode(value);
+            },
+          ),
           ListTile(title: Text("Notifications")),
           GestureDetector(
             child: ListTile(
