@@ -9,7 +9,8 @@ import 'package:thread/setting_screen/views/setting_screen.dart';
 import 'package:thread/setting_screen/views/privacy_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:thread/authentication/repos/authentication_repo.dart';
-import 'package:thread/authentication/view/authentication_screen.dart';
+import 'package:thread/authentication/view/sign_up_screen.dart';
+import 'package:thread/authentication/view/login_screen.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorKey = GlobalKey<NavigatorState>();
@@ -17,21 +18,23 @@ final _shellNavigatorKey = GlobalKey<NavigatorState>();
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: '/',
+    initialLocation: '/login',
     redirect: (context, state) {
       final isLoggedIn = ref.read(authRepo).isLoggedIn;
       if (!isLoggedIn) {
-        if (state.matchedLocation != '/authentication') {
-          return '/authentication';
+        if (state.matchedLocation != '/signUp' && state.matchedLocation != '/login') {
+          return '/login';
+        }
+      } else {
+        if (state.matchedLocation == '/signUp' || state.matchedLocation == '/login') {
+          return '/';
         }
       }
       return null;
     },
     routes: [
-      GoRoute(
-        path: '/authentication',
-        builder: (context, state) => AuthenticationScreen(),
-      ),
+      GoRoute(path: '/signUp', builder: (context, state) => SignUpScreen()),
+      GoRoute(path: '/login', builder: (context, state) => LoginScreen()),
       ShellRoute(
         navigatorKey: _shellNavigatorKey,
         builder: (context, state, child) {

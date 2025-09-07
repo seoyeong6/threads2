@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:thread/setting_screen/view_models/darkmode_config_viewmodel.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:thread/authentication/viewmodel/authentication_viewmodel.dart';
 
 class SettingScreen extends ConsumerWidget {
   const SettingScreen({super.key});
@@ -44,22 +45,36 @@ class SettingScreen extends ConsumerWidget {
           ListTile(title: Text("About")),
           ListTile(
             title: const Text("Log out"),
-            textColor: Colors.blue,
+            textColor: Colors.red,
             onTap: () {
               showCupertinoDialog(
                 context: context,
                 builder: (context) => CupertinoAlertDialog(
-                  title: const Text("Are you sure?"),
-                  content: const Text("Plx dont go"),
+                  title: const Text("로그아웃"),
+                  content: const Text("정말 로그아웃하시겠습니까?"),
                   actions: [
                     CupertinoDialogAction(
                       onPressed: () => Navigator.of(context).pop(),
-                      child: const Text("No"),
+                      child: const Text("취소"),
                     ),
                     CupertinoDialogAction(
-                      onPressed: () => Navigator.of(context).pop(),
+                      onPressed: () async {
+                        Navigator.of(context).pop();
+                        try {
+                          await ref.read(authViewModelProvider.notifier).signOut();
+                          if (context.mounted) {
+                            context.go('/login');
+                          }
+                        } catch (e) {
+                          if (context.mounted) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text('로그아웃 실패: ${e.toString()}')),
+                            );
+                          }
+                        }
+                      },
                       isDestructiveAction: true,
-                      child: const Text("Yes"),
+                      child: const Text("로그아웃"),
                     ),
                   ],
                 ),
