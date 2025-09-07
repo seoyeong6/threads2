@@ -18,30 +18,35 @@ final _shellNavigatorKey = GlobalKey<NavigatorState>();
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: '/login',
+    initialLocation: ref.read(authRepo).isLoggedIn ? '/' : '/login',
     redirect: (context, state) {
-      final isLoggedIn = ref.read(authRepo).isLoggedIn;
+      final isLoggedIn = ref.watch(authRepo).isLoggedIn;
       if (!isLoggedIn) {
-        if (state.matchedLocation != '/signUp' && state.matchedLocation != '/login') {
+        if (state.matchedLocation != '/signUp' &&
+            state.matchedLocation != '/login') {
           return '/login';
         }
       } else {
-        if (state.matchedLocation == '/signUp' || state.matchedLocation == '/login') {
+        if (state.matchedLocation == '/signUp' ||
+            state.matchedLocation == '/login') {
           return '/';
         }
       }
       return null;
     },
     routes: [
-      GoRoute(path: '/signUp', builder: (context, state) => SignUpScreen()),
-      GoRoute(path: '/login', builder: (context, state) => LoginScreen()),
+      GoRoute(
+        path: '/signUp',
+        builder: (context, state) => const SignUpScreen(),
+      ),
+      GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
       ShellRoute(
         navigatorKey: _shellNavigatorKey,
         builder: (context, state, child) {
           return MainNavigation(child: child);
         },
         routes: [
-          GoRoute(path: '/', builder: (context, state) => HomeScreen()),
+          GoRoute(path: '/', builder: (context, state) => const HomeScreen()),
           GoRoute(path: '/search', builder: (context, state) => SearchScreen()),
           GoRoute(
             path: '/activity',
@@ -53,11 +58,11 @@ final routerProvider = Provider<GoRouter>((ref) {
           ),
           GoRoute(
             path: '/settings',
-            builder: (context, state) => SettingScreen(),
+            builder: (context, state) => const SettingScreen(),
             routes: [
               GoRoute(
                 path: 'privacy',
-                builder: (context, state) => PrivacyScreen(),
+                builder: (context, state) => const PrivacyScreen(),
               ),
             ],
           ),
