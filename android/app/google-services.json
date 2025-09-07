@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "623607458675",
+    "project_id": "thread-thread-threads",
+    "storage_bucket": "thread-thread-threads.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:623607458675:android:531d7558f1760891a37306",
+        "android_client_info": {
+          "package_name": "com.example.thread"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApiOeqQv74Rt92uxP1X3dfREEHQnB7q9c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
